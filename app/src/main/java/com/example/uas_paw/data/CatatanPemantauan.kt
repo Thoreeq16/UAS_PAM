@@ -13,3 +13,4 @@ data class CatatanPemantauan(
     val tanamanIdFK : Int,
     val sensorIdFK : Int
 )
+
