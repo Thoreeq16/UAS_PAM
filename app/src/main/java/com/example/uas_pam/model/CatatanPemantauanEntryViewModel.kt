@@ -1,11 +1,11 @@
-package com.example.uas_paw.model
+package com.example.uas_pam.model
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.uas_paw.data.CatatanPemantauan
-import com.example.uas_paw.repositori.RepositoriCatatanPemantauan
+import com.example.uas_pam.data.CatatanPemantauan
+import com.example.uas_pam.repositori.RepositoriCatatanPemantauan
 
 class CatatanPemantauanEntryViewModel(private val repositoriCatatanPemantauan: RepositoriCatatanPemantauan): ViewModel() {
     var uiStateCatatanPemantauan by mutableStateOf(UIStateCatatanPemantauan())

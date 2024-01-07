@@ -1,4 +1,4 @@
-package com.example.uas_paw.data
+package com.example.uas_pam.data
 
 import android.content.Context
 import androidx.room.Database

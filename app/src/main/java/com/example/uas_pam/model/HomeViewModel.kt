@@ -1,9 +1,9 @@
-package com.example.uas_paw.model
+package com.example.uas_pam.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.uas_paw.data.Tanaman
-import com.example.uas_paw.repositori.RepositoriTanaman
+import com.example.uas_pam.data.Tanaman
+import com.example.uas_pam.repositori.RepositoriTanaman
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -15,7 +15,7 @@ class HomeViewModel(private val repositoriTanaman: RepositoriTanaman) : ViewMode
         private const val TIMEOUT_MILLIS = 5_000L
     }
 
-    val homeUiState: StateFlow<HomeUiState> = repositoriTanaman.getAllTanamanStream().filterNotNull()
+    val HomeUiState: StateFlow<HomeUiState> = repositoriTanaman.getAllTanamanStream().filterNotNull()
         .map { HomeUiState(listTanaman = it.toList()) }.stateIn(
             scope = viewModelScope, started = SharingStarted.WhileSubscribed(
                 TIMEOUT_MILLIS

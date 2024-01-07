@@ -1,4 +1,4 @@
-package com.example.uas_paw.ui.theme
+package com.example.uas_pam.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

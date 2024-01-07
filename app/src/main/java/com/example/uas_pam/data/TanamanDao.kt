@@ -1,4 +1,4 @@
-package com.example.uas_paw.data
+package com.example.uas_pam.data
 
 import androidx.room.Dao
 import androidx.room.Delete

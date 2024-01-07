@@ -1,11 +1,11 @@
-package com.example.uas_paw.model
+package com.example.uas_pam.model
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.uas_paw.data.SensorTanaman
-import com.example.uas_paw.repositori.RepositoriSensorTanaman
+import com.example.uas_pam.data.SensorTanaman
+import com.example.uas_pam.repositori.RepositoriSensorTanaman
 
 class SensorTanamanEntryViewModel(private val repositoriSensorTanaman: RepositoriSensorTanaman): ViewModel() {
     var uiStateSensorTanaman by mutableStateOf(UIStateSensorTanaman())

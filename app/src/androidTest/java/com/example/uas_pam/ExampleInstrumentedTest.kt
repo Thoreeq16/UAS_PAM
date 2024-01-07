@@ -1,4 +1,4 @@
-package com.example.uas_paw
+package com.example.uas_pam
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

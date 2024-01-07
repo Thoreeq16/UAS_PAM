@@ -1,4 +1,4 @@
-package com.example.uas_paw
+package com.example.uas_pam
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.uas_paw.ui.theme.UAS_PAWTheme
+import com.example.uas_pam.ui.theme.UAS_PAWTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

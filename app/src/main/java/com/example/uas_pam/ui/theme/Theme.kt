@@ -1,4 +1,4 @@
-package com.example.uas_paw.ui.theme
+package com.example.uas_pam.ui.theme
 
 import android.app.Activity
 import android.os.Build

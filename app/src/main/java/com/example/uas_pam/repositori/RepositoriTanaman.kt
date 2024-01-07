@@ -1,6 +1,6 @@
-package com.example.uas_paw.repositori
+package com.example.uas_pam.repositori
 
-import com.example.uas_paw.data.Tanaman
+import com.example.uas_pam.data.Tanaman
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoriTanaman {

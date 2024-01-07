@@ -1,4 +1,4 @@
-package com.example.uas_paw
+package com.example.uas_pam
 
 import org.junit.Test
 
