@@ -16,16 +16,16 @@ class CatatanPemantauanDetailViewModel(
 ) : ViewModel() {
 
     private val CatatanPemantauanID: Int = checkNotNull(savedStateHandle[DetailDestination.CatatanPemantauanIdArg])
-    val uiState: StateFlow<ItemDetailUiState> =
+    val uiState: StateFlow<CatatanPemantauanDetailUiState> =
         repositoriCatatanPemantauan.getCatatanPemantauanStream(CatatanPemantauanID).filterNotNull().map {
-            ItemDetailUiState(detailCatatanPemantauan = it.toDetailCatatanPemantauan())
+            CatatanPemantauanDetailUiState(detailCatatanPemantauan = it.toDetailCatatanPemantauan())
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
-            initialValue = ItemDetailUiState()
+            initialValue = CatatanPemantauanDetailUiState()
         )
 
-    suspend fun deleteItem() {
+    suspend fun deleteCatatanPemantauan() {
         repositoriCatatanPemantauan.deleteCatatanPemantauan(uiState.value.detailCatatanPemantauan.toCatatanPemantauan())
     }
 
@@ -33,7 +33,7 @@ class CatatanPemantauanDetailViewModel(
         private const val TIMEOUT_MILLIS = 5_000L
     }
 }
-data class  ItemDetailUiState(
+data class  CatatanPemantauanDetailUiState(
     val outOfStock: Boolean = true,
     val detailCatatanPemantauan: DetailCatatanPemantauan = DetailCatatanPemantauan()
 )

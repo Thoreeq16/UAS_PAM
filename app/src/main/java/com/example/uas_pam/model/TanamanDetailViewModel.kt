@@ -16,16 +16,16 @@ class TanamanDetailViewModel(
 ) : ViewModel() {
 
     private val TanamanID: Int = checkNotNull(savedStateHandle[DetailDestination.TanamanIdArg])
-    val uiState: StateFlow<ItemDetailUiState> =
+    val uiState: StateFlow<TanamanDetailUiState> =
         repositoriTanaman.getTanamanStream(TanamanID).filterNotNull().map {
-            ItemDetailUiState(detailTanaman = it.toDetailTanaman())
+            TanamanDetailUiState(detailTanaman = it.toDetailTanaman())
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
-            initialValue = ItemDetailUiState()
+            initialValue = TanamanDetailUiState()
         )
 
-    suspend fun deleteItem() {
+    suspend fun deleteTanaman() {
         repositoriTanaman.deleteTanaman(uiState.value.detailTanaman.toTanaman())
     }
 
@@ -33,7 +33,7 @@ class TanamanDetailViewModel(
         private const val TIMEOUT_MILLIS = 5_000L
     }
 }
-data class  ItemDetailUiState(
+data class  TanamanDetailUiState(
     val outOfStock: Boolean = true,
     val detailTanaman: DetailTanaman = DetailTanaman()
 )

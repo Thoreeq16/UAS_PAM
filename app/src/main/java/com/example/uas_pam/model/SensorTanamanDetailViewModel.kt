@@ -16,16 +16,16 @@ class SensorTanamanDetailViewModel(
 ) : ViewModel() {
 
     private val SensorTanamanID: Int = checkNotNull(savedStateHandle[DetailDestination.SensorTanamanIdArg])
-    val uiState: StateFlow<ItemDetailUiState> =
+    val uiState: StateFlow<SensorTanamanDetailUiState> =
         repositoriSensorTanaman.getSensorTanamanStream(SensorTanamanID).filterNotNull().map {
-            ItemDetailUiState(detailSensorTanaman = it.toDetailSensorTanaman())
+            SensorTanamanDetailUiState(detailSensorTanaman = it.toDetailSensorTanaman())
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
-            initialValue = ItemDetailUiState()
+            initialValue = SensorTanamanDetailUiState()
         )
 
-    suspend fun deleteItem() {
+    suspend fun deleteSensorTanaman() {
         repositoriSensorTanaman.deleteSensorTanaman(uiState.value.detailSensorTanaman.toSensorTanaman())
     }
 
@@ -33,7 +33,7 @@ class SensorTanamanDetailViewModel(
         private const val TIMEOUT_MILLIS = 5_000L
     }
 }
-data class  ItemDetailUiState(
+data class  SensorTanamanDetailUiState(
     val outOfStock: Boolean = true,
     val detailSensorTanaman: DetailSensorTanaman = DetailSensorTanaman()
 )
