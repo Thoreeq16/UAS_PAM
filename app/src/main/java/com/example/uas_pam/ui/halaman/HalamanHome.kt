@@ -57,26 +57,19 @@ object DestinasiHome : DestinasiNavigasi {
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
-    navigateToPlants: () -> Unit,
-    navigateToStats: () -> Unit,
-    navigateToHistory: () -> Unit,
-    onDetailClick: (Int) -> Unit = {},
-    onLogoutClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onDetailClick: (Int) -> Unit = {},
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
             GreenGuardianTopAppBar(
                 title = stringResource(id = DestinasiHome.titleRes),
                 canNavigateBack = false,
-                scrollBehavior = scrollBehavior,
-                onLogoutClick = onLogoutClick
+                scrollBehavior = scrollBehavior
             )
-        },
-        floatingActionButton = {
+        }, floatingActionButton = {
             FloatingActionButton(
                 onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
@@ -84,7 +77,7 @@ fun HomeScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(id = R.string.entry_tanaman)
+                    contentDescription = stringResource(id = R.string.app_name)
                 )
             }
         }
@@ -95,10 +88,8 @@ fun HomeScreen(
                 .padding(innerPadding)
                 .fillMaxSize(),
             itemTanaman = uiStateTanaman.listTanaman,
-            onSiswaClick = onDetailClick,
-            navigateToPlants = navigateToPlants,
-            navigateToStats = navigateToStats,
-            navigateToHistory = navigateToHistory
+            onTanamanClick = onDetailClick
+
         )
     }
 }
@@ -107,32 +98,9 @@ fun HomeScreen(
 fun BodyHome(
     modifier: Modifier,
     itemTanaman: List<Tanaman>,
-    onSiswaClick: (Int) -> Unit = {},
-    navigateToPlants: () -> Unit,
-    navigateToStats: () -> Unit,
-    navigateToHistory: () -> Unit
+    onTanamanClick: (Int) -> Unit = {}
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
-        // Tambahkan button "PLANTS"
-        Button(onClick = { navigateToPlants() }) {
-            Text("PLANTS", style = MaterialTheme.typography.displayLarge)
-        }
-
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_small)))
-
-        // Tambahkan button "STATS"
-        Text("STATS", style = MaterialTheme.typography.displaySmall)
-    }
-
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_small)))
-
-        // Tambahkan button "HISTORY"
-        Button(onClick = { navigateToHistory() }) {
-            Text("HISTORY", style = MaterialTheme.typography.displaySmall)
-        }
-
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_small)))
-
         if (itemTanaman.isEmpty()) {
             Text(
                 text = stringResource(R.string.deskripsi_no_item),
@@ -142,10 +110,11 @@ fun BodyHome(
             ListTanaman(
                 itemTanaman = itemTanaman,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small)),
-                onItemClick = { onSiswaClick(it.id) }
+                onItemClick = { onTanamanClick(it.id) }
             )
         }
     }
+}
 
 @Composable
 fun ListTanaman(
@@ -156,7 +125,7 @@ fun ListTanaman(
     LazyColumn(modifier = Modifier) {
         items(items = itemTanaman, key = { it.id }) { person ->
             DataTanaman(
-                tanaman = person,
+                Tanaman = person,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small)).clickable { onItemClick(person) }
             )
         }
@@ -165,7 +134,7 @@ fun ListTanaman(
 
 @Composable
 fun DataTanaman(
-    tanaman: Tanaman, modifier: Modifier = Modifier
+    Tanaman: Tanaman, modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -178,7 +147,7 @@ fun DataTanaman(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = tanaman.nmtanaman,
+                    text = Tanaman.nmtanaman,
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(Modifier.weight(1f))
@@ -187,12 +156,12 @@ fun DataTanaman(
                     contentDescription = null
                 )
                 Text(
-                    text = tanaman.loctanaman,
+                    text = Tanaman.loctanaman,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
             Text(
-                text = tanaman.jnstanaman,
+                text = Tanaman.jnstanaman,
                 style = MaterialTheme.typography.titleMedium
             )
         }
