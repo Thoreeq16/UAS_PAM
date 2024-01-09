@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UAS_PAW</string>
+    <string name="deskripsi_no_item">Tidak ada data tanaman. Tap + untuk menambah data</string>
+    <string name="entry_tanaman">Tambah Tanaman</string>
 </resources>
