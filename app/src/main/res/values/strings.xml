@@ -21,4 +21,11 @@
     <string name="tglpemantau">Status Tanaman:</string>
     <string name="kondisitnm">Kondisi Tanaman:</string>
     <string name="keterangan">Keterangan Tanaman:</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="delete">Hapus</string>
+    <string name="update">Edit</string>
+    <string name="attention">Perhatian</string>
+    <string name="back">Back</string>
+    <string name="tanya">Apakah anda yakin menghapus ini ?</string>
 </resources>
