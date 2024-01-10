@@ -1,4 +1,4 @@
-package com.example.uas_pam.ui
+package com.example.uas_pam
 
 import android.app.Application
 import com.example.uas_pam.repositori.ContainerApp

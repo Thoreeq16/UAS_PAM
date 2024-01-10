@@ -54,7 +54,7 @@ object TanamanDetailDestination : DestinasiNavigasi {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun TanamanDetailScreen(
     navigateToEditTanaman: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,

@@ -48,13 +48,13 @@ import kotlinx.coroutines.launch
 object SensorTanamanDetailDestination : DestinasiNavigasi {
     override val route = "SensorTanaman_details"
     override val titleRes = R.string.detail_sensor_tanaman
-    const val SensorTanaman = "SensorTanamanId"
-    val routeWithArgs = "$route/{$SensorTanaman}"
+    const val SensorTanamanIdArg = "SensorTanamanId"
+    val routeWithArgs = "$route/{$SensorTanamanIdArg}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun SensorTanamanDetailScreen(
     navigateToEditSensorTanaman: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,

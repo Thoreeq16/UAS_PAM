@@ -17,6 +17,30 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.uas_pam.ui.halaman.CatatanPemantauanDestinasiEntry
+import com.example.uas_pam.ui.halaman.CatatanPemantauanDetailDestination
+import com.example.uas_pam.ui.halaman.CatatanPemantauanDetailScreen
+import com.example.uas_pam.ui.halaman.CatatanPemantauanEditDestination
+import com.example.uas_pam.ui.halaman.CatatanPemantauanEditScreen
+import com.example.uas_pam.ui.halaman.DestinasiHome
+import com.example.uas_pam.ui.halaman.EntryCatatanPemantauanScreen
+import com.example.uas_pam.ui.halaman.EntrySensorTanamanScreen
+import com.example.uas_pam.ui.halaman.EntryTanamanBody
+import com.example.uas_pam.ui.halaman.EntryTanamanScreen
+import com.example.uas_pam.ui.halaman.HomeScreen
+import com.example.uas_pam.ui.halaman.SensorTanamanDestinasiEntry
+import com.example.uas_pam.ui.halaman.SensorTanamanDetailDestination
+import com.example.uas_pam.ui.halaman.SensorTanamanDetailScreen
+import com.example.uas_pam.ui.halaman.SensorTanamanEditDestination
+import com.example.uas_pam.ui.halaman.SensorTanamanEditScreen
+import com.example.uas_pam.ui.halaman.TanamanDestinasiEntry
+import com.example.uas_pam.ui.halaman.TanamanDetailDestination
+import com.example.uas_pam.ui.halaman.TanamanDetailScreen
+import com.example.uas_pam.ui.halaman.TanamanEditDestination
+import com.example.uas_pam.ui.halaman.TanamanEditScreen
+import com.example.uas_paw.R
+
+
 
 @Composable
 fun SiswaApp(navController: NavHostController = rememberNavController()) {
@@ -25,11 +49,12 @@ fun SiswaApp(navController: NavHostController = rememberNavController()) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SiswaTopAppBar(
+fun GreenGuardianTopAppBar(
     title: String,
     canNavigateBack: Boolean,
     modifier: Modifier = Modifier,
     scrollBehavior: TopAppBarScrollBehavior? = null,
+    onLogoutClick : () -> Unit = {},
     navigateUp: () -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
@@ -61,41 +86,132 @@ fun HostNavigasi(
     ) {
         composable(DestinasiHome.route) {
             HomeScreen(
-                navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
-                onDetailClick = { itemId ->
-                    navController.navigate("${DetailDestination.route}/$itemId")
-                },
+                navigateToItemEntry = { navController.navigate(TanamanDestinasiEntry.route) },
+                onDetailClick = { TanamanId ->
+                    navController.navigate("${TanamanDestinasiEntry.route}/$TanamanId")
+                }
             )
         }
-        composable(DestinasiEntry.route) {
-            EntrySiswaScreen(navigateBack = { navController.popBackStack() })
+        composable(TanamanDestinasiEntry.route) {
+            EntryTanamanScreen(navigateBack = { navController.popBackStack() })
         }
 
         composable(
-            DetailDestination.routeWithArgs,
-            arguments = listOf(navArgument(DetailDestination.siswaIdArg) {
+            TanamanDetailDestination.routeWithArgs,
+            arguments = listOf(navArgument(TanamanDetailDestination.TanamanIdArg) {
                 type = NavType.IntType
             })
         ) { backStackEntry ->
-            val itemId = backStackEntry.arguments?.getInt(DetailDestination.siswaIdArg)
-            itemId?.let {
-                DetailScreen(
+            val TanamanId = backStackEntry.arguments?.getInt(TanamanDetailDestination.TanamanIdArg)
+            TanamanId?.let {
+                TanamanDetailScreen(
                     navigateBack = { navController.popBackStack() },
-                    navigateToEditItem = { navController.navigate("${ItemEditDestination.route}/$it") }
+                    navigateToEditTanaman = { navController.navigate("${TanamanEditDestination.route}/$it") }
                 )
             }
         }
 
         composable(
-            ItemEditDestination.routeWithArgs,
-            arguments = listOf(navArgument(ItemEditDestination.itemIdArg) {
+            TanamanEditDestination.routeWithArgs,
+            arguments = listOf(navArgument(TanamanEditDestination.TanamanIdArg) {
                 type = NavType.IntType
             })
         ) {
-            ItemEditScreen(navigateBack = { navController.popBackStack() },
+            TanamanEditScreen(navigateBack = { navController.popBackStack() },
                 onNavigateUp = { navController.navigateUp() })
         }
 
 
     }
+
+    NavHost(
+        navController = navController,
+        startDestination = DestinasiHome.route,
+        modifier = Modifier
+    ) {
+        composable(DestinasiHome.route) {
+            HomeScreen(
+                navigateToItemEntry = { navController.navigate(SensorTanamanDestinasiEntry.route) },
+                onDetailClick = { SensorTanamanId ->
+                    navController.navigate("${SensorTanamanDestinasiEntry.route}/$SensorTanamanId")
+                }
+            )
+        }
+        composable(SensorTanamanDestinasiEntry.route) {
+            EntrySensorTanamanScreen(navigateBack = { navController.popBackStack() })
+        }
+
+        composable(
+            SensorTanamanDetailDestination.routeWithArgs,
+            arguments = listOf(navArgument(SensorTanamanDetailDestination.SensorTanamanIdArg) {
+                type = NavType.IntType
+            })
+        ) { backStackEntry ->
+            val SensorTanamanId = backStackEntry.arguments?.getInt(TanamanDetailDestination.TanamanIdArg)
+            SensorTanamanId?.let {
+                SensorTanamanDetailScreen(
+                    navigateBack = { navController.popBackStack() },
+                    navigateToEditSensorTanaman = { navController.navigate("${SensorTanamanEditDestination.route}/$it") }
+                )
+            }
+        }
+
+        composable(
+            SensorTanamanEditDestination.routeWithArgs,
+            arguments = listOf(navArgument(SensorTanamanEditDestination.SensorTanamanIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            SensorTanamanEditScreen(navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() })
+        }
+
+
+    }
+
+    NavHost(
+        navController = navController,
+        startDestination = DestinasiHome.route,
+        modifier = Modifier
+    ) {
+        composable(DestinasiHome.route) {
+            HomeScreen(
+                navigateToItemEntry = { navController.navigate(CatatanPemantauanDestinasiEntry.route) },
+                onDetailClick = { CatatanPemantauanId ->
+                    navController.navigate("${CatatanPemantauanDestinasiEntry.route}/$CatatanPemantauanId")
+                }
+            )
+        }
+        composable(CatatanPemantauanDestinasiEntry.route) {
+            EntryCatatanPemantauanScreen(navigateBack = { navController.popBackStack() })
+        }
+
+        composable(
+            CatatanPemantauanDetailDestination.routeWithArgs,
+            arguments = listOf(navArgument(CatatanPemantauanDetailDestination.CatatanPemantauanIdArg) {
+                type = NavType.IntType
+            })
+        ) { backStackEntry ->
+            val CatatanPemantauanId = backStackEntry.arguments?.getInt(CatatanPemantauanDetailDestination.CatatanPemantauanIdArg)
+            CatatanPemantauanId?.let {
+                CatatanPemantauanDetailScreen(
+                    navigateBack = { navController.popBackStack() },
+                    navigateToEditCatatanPemantauan = { navController.navigate("${CatatanPemantauanEditDestination.route}/$it") }
+                )
+            }
+        }
+
+        composable(
+            CatatanPemantauanEditDestination.routeWithArgs,
+            arguments = listOf(navArgument(CatatanPemantauanEditDestination.CatatanPemantauanIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            CatatanPemantauanEditScreen(navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() })
+        }
+
+
+    }
+
 }

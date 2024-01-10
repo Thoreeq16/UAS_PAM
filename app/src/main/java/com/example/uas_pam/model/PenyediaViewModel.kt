@@ -5,11 +5,12 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.uas_pam.AplikasiGreenGuardian
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer {
-            HomeViewModel(aplikasiSiswa().container.repositoriSiswa)
+            HomeViewModel(aplikasiGreenGuardian().container.repositoriTanaman)
         }
 
         initializer {
@@ -17,20 +18,34 @@ object PenyediaViewModel {
         }
 
         initializer {
-            DetailViewModel(createSavedStateHandle(), aplikasiSiswa().container.repositoriSiswa)
+            TanamanDetailViewModel(createSavedStateHandle(), aplikasiGreenGuardian().container.repositoriTanaman)
         }
+
         initializer {
-            DetailViewModel(
+            TanamanEditViewModel(
                 createSavedStateHandle(),
-                aplikasiSiswa().container.repositoriSiswa,
+                aplikasiGreenGuardian().container.repositoriTanaman,
             )
         }
 
         initializer {
-            EditViewModel(
-                createSavedStateHandle(),
-                aplikasiSiswa().container.repositoriSiswa,
-            )
+            SensorTanamanEntryViewModel(aplikasiGreenGuardian().container.repositoriSensorTanaman)
+        }
+        initializer {
+            SensorTanamanDetailViewModel(createSavedStateHandle(),aplikasiGreenGuardian().container.repositoriSensorTanaman)
+        }
+        initializer {
+            SensorTanamanEditViewModel(createSavedStateHandle(),aplikasiGreenGuardian().container.repositoriSensorTanaman)
+        }
+
+        initializer {
+            CatatanPemantauanEntryViewModel(aplikasiGreenGuardian().container.repositoriCatatanPemantauan)
+        }
+        initializer {
+            CatatanPemantauanDetailViewModel(createSavedStateHandle(),aplikasiGreenGuardian().container.repositoriCatatanPemantauan)
+        }
+        initializer {
+            CatatanPemantauanEditViewModel(createSavedStateHandle(),aplikasiGreenGuardian().container.repositoriCatatanPemantauan)
         }
     }
 }

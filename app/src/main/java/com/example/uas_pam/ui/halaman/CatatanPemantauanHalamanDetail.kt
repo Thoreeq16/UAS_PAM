@@ -54,7 +54,7 @@ object CatatanPemantauanDetailDestination : DestinasiNavigasi {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun CatatanPemantauanDetailScreen(
     navigateToEditCatatanPemantauan: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
