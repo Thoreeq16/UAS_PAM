@@ -39,14 +39,23 @@ import com.example.uas_pam.model.PenyediaViewModel
 import com.example.uas_pam.model.SensorTanamanDetailUiState
 import com.example.uas_pam.model.SensorTanamanDetailViewModel
 import com.example.uas_pam.model.toSensorTanaman
+import com.example.uas_pam.navigasi.DestinasiNavigasi
 import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
+
+object SensorTanamanDetailDestination : DestinasiNavigasi {
+    override val route = "SensorTanaman_details"
+    override val titleRes = R.string.detail_tanaman
+    const val TanamanIdArg = "SensorTanamanId"
+    val routeWithArgs = "$route/{$TanamanIdArg}"
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    navigateToEditItem: (Int) -> Unit,
+    navigateToEditSensorTanaman: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SensorTanamanDetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -56,13 +65,13 @@ fun DetailScreen(
     Scaffold(
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(DetailDestination.titleRes),
+                title = stringResource(SensorTanamanDetailDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = navigateBack
             )
         }, floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditItem(uiState.value.detailSensorTanaman.id) },
+                onClick = { navigateToEditSensorTanaman(uiState.value.detailSensorTanaman.id) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
 
@@ -74,11 +83,11 @@ fun DetailScreen(
             }
         }, modifier = modifier
     ) { innerPadding ->
-        ItemDetailsBody(
+        SensorTanamanDetailsBody(
             SensorTanamanDetailUiState = uiState.value,
             onDelete = {
                 // Note: If the user rotates the screen very fast, the operation may get cancelled
-                // and the item may not be deleted from the Database. This is because when config
+                // and the SensorTanaman may not be deleted from the Database. This is because when config
                 // change occurs, the Activity will be recreated and the rememberCoroutineScope will
                 // be cancelled - since the scope is bound to composition.
                 coroutineScope.launch {
@@ -97,7 +106,7 @@ fun DetailScreen(
 
 
 @Composable
-private fun ItemDetailsBody(
+private fun SensorTanamanDetailsBody(
     SensorTanamanDetailUiState: SensorTanamanDetailUiState,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
@@ -107,7 +116,7 @@ private fun ItemDetailsBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
-        ItemDetails(
+        SensorTanamanDetails(
             SensorTanaman  = SensorTanamanDetailUiState.detailSensorTanaman.toSensorTanaman(), modifier = Modifier.fillMaxWidth()
         )
 
@@ -132,7 +141,7 @@ private fun ItemDetailsBody(
 }
 
 @Composable
-fun ItemDetails(
+fun SensorTanamanDetails(
     SensorTanaman: SensorTanaman, modifier: Modifier = Modifier
 ) {
     Card(
@@ -147,9 +156,9 @@ fun ItemDetails(
                 .padding(dimensionResource(id = R.dimen.padding_medium)),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
         ) {
-            ItemDetailsRow(
+            SensorTanamanDetailsRow(
                 labelResId = R.string.locsensor,
-                itemDetail = SensorTanaman.locsensor,
+                SensorTanamanDetail = SensorTanaman.locsensor,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -157,9 +166,9 @@ fun ItemDetails(
                     )
                 )
             )
-            ItemDetailsRow(
+            SensorTanamanDetailsRow(
                 labelResId = R.string.statustanaman,
-                itemDetail = SensorTanaman.statustanaman,
+                SensorTanamanDetail = SensorTanaman.statustanaman,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -173,13 +182,13 @@ fun ItemDetails(
 }
 
 @Composable
-private fun ItemDetailsRow(
-    @StringRes labelResId: Int, itemDetail: String, modifier: Modifier = Modifier
+private fun SensorTanamanDetailsRow(
+    @StringRes labelResId: Int, SensorTanamanDetail: String, modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
         Text(text = stringResource(labelResId))
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = itemDetail, fontWeight = FontWeight.Bold)
+        Text(text = SensorTanamanDetail, fontWeight = FontWeight.Bold)
     }
 
 }

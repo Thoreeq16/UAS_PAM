@@ -27,9 +27,15 @@ import com.example.uas_pam.model.DetailSensorTanaman
 import com.example.uas_pam.model.PenyediaViewModel
 import com.example.uas_pam.model.SensorTanamanEntryViewModel
 import com.example.uas_pam.model.UIStateSensorTanaman
+import com.example.uas_pam.navigasi.DestinasiNavigasi
 import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
+
+object SensorTanamanDestinasiEntry : DestinasiNavigasi {
+    override val route = "item_entry"
+    override val titleRes = R.string.entry_tanaman
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,7 +50,7 @@ fun EntrySensorTanamanScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(DestinasiEntry.titleRes),
+                title = stringResource(SensorTanamanDestinasiEntry.titleRes),
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior
             )

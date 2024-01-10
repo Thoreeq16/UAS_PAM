@@ -45,9 +45,9 @@ import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
 object TanamanDetailDestination : DestinasiNavigasi {
-    override val route = "item_details"
+    override val route = "Tanaman_details"
     override val titleRes = R.string.detail_tanaman
-    const val TanamanIdArg = "itemId"
+    const val TanamanIdArg = "TanamanId"
     val routeWithArgs = "$route/{$TanamanIdArg}"
 }
 
@@ -55,7 +55,7 @@ object TanamanDetailDestination : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    navigateToEditItem: (Int) -> Unit,
+    navigateToEditTanaman: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: TanamanDetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -71,7 +71,7 @@ fun DetailScreen(
             )
         }, floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditItem(uiState.value.detailTanaman.id) },
+                onClick = { navigateToEditTanaman(uiState.value.detailTanaman.id) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
 
@@ -83,11 +83,11 @@ fun DetailScreen(
             }
         }, modifier = modifier
     ) { innerPadding ->
-        ItemDetailsBody(
+        TanamanDetailsBody(
             TanamanDetailUiState = uiState.value,
             onDelete = {
                 // Note: If the user rotates the screen very fast, the operation may get cancelled
-                // and the item may not be deleted from the Database. This is because when config
+                // and the Tanaman may not be deleted from the Database. This is because when config
                 // change occurs, the Activity will be recreated and the rememberCoroutineScope will
                 // be cancelled - since the scope is bound to composition.
                 coroutineScope.launch {
@@ -106,7 +106,7 @@ fun DetailScreen(
 
 
 @Composable
-private fun ItemDetailsBody(
+private fun TanamanDetailsBody(
     TanamanDetailUiState: TanamanDetailUiState,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
@@ -116,7 +116,7 @@ private fun ItemDetailsBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
-        ItemDetails(
+        TanamanDetails(
             Tanaman  = TanamanDetailUiState.detailTanaman.toTanaman(), modifier = Modifier.fillMaxWidth()
         )
 
@@ -141,7 +141,7 @@ private fun ItemDetailsBody(
 }
 
 @Composable
-fun ItemDetails(
+fun TanamanDetails(
     Tanaman: Tanaman, modifier: Modifier = Modifier
 ) {
     Card(
@@ -156,9 +156,9 @@ fun ItemDetails(
                 .padding(dimensionResource(id = R.dimen.padding_medium)),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
         ) {
-            ItemDetailsRow(
+            TanamanDetailsRow(
                 labelResId = R.string.nmtanaman,
-                itemDetail = Tanaman.nmtanaman,
+                TanamanDetail = Tanaman.nmtanaman,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -166,9 +166,9 @@ fun ItemDetails(
                     )
                 )
             )
-            ItemDetailsRow(
+            TanamanDetailsRow(
                 labelResId = R.string.jnstanaman,
-                itemDetail = Tanaman.jnstanaman,
+                TanamanDetail = Tanaman.jnstanaman,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -176,9 +176,9 @@ fun ItemDetails(
                     )
                 )
             )
-            ItemDetailsRow(
+            TanamanDetailsRow(
                 labelResId = R.string.loctanaman,
-                itemDetail = Tanaman.loctanaman,
+                TanamanDetail = Tanaman.loctanaman,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -192,13 +192,13 @@ fun ItemDetails(
 }
 
 @Composable
-private fun ItemDetailsRow(
-    @StringRes labelResId: Int, itemDetail: String, modifier: Modifier = Modifier
+private fun TanamanDetailsRow(
+    @StringRes labelResId: Int, TanamanDetail: String, modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
         Text(text = stringResource(labelResId))
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = itemDetail, fontWeight = FontWeight.Bold)
+        Text(text = TanamanDetail, fontWeight = FontWeight.Bold)
     }
 
 }

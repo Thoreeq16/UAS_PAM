@@ -16,15 +16,15 @@ import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
 object TanamanEditDestination : DestinasiNavigasi {
-    override val route = "item_edit"
+    override val route = "Tanaman_edit"
     override val titleRes = R.string.edit_tanaman
-    const val itemIdArg = "itemId"
-    val routeWithArgs = "$route/{$itemIdArg}"
+    const val TanamanIdArg = "TanamanId"
+    val routeWithArgs = "$route/{$TanamanIdArg}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemEditScreen(
+fun TanamanEditScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier,
@@ -46,7 +46,7 @@ fun ItemEditScreen(
             onTanamanValueChange = viewModel::updateUiState,
             onSaveClick = {
                 // Note: If the user rotates the screen very fast, the operation may get cancelled
-                // and the item may not be updated in the Database. This is because when config
+                // and the Tanaman may not be updated in the Database. This is because when config
                 // change occurs, the Activity will be recreated and the rememberCoroutineScope will
                 // be cancelled - since the scope is bound to composition.
                 coroutineScope.launch {
