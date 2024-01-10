@@ -43,7 +43,7 @@ import com.example.uas_paw.R
 
 
 @Composable
-fun SiswaApp(navController: NavHostController = rememberNavController()) {
+fun GreenApp(navController: NavHostController = rememberNavController()) {
     HostNavigasi(navController = navController)
 }
 

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.uas_paw"
-    compileSdk = 33
+    namespace = "com.example.uas_pam"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.uas_paw"
+        applicationId = "com.example.uas_pam"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -41,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
