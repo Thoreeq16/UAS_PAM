@@ -47,9 +47,9 @@ import kotlinx.coroutines.launch
 
 object SensorTanamanDetailDestination : DestinasiNavigasi {
     override val route = "SensorTanaman_details"
-    override val titleRes = R.string.detail_tanaman
-    const val TanamanIdArg = "SensorTanamanId"
-    val routeWithArgs = "$route/{$TanamanIdArg}"
+    override val titleRes = R.string.detail_sensor_tanaman
+    const val SensorTanaman = "SensorTanamanId"
+    val routeWithArgs = "$route/{$SensorTanaman}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 object SensorTanamanEditDestination : DestinasiNavigasi {
     override val route = "SensorTanaman_edit"
-    override val titleRes = R.string.edit_tanaman
+    override val titleRes = R.string.edit_sensor_tanaman
     const val SensorTanamanIdArg = "SensorTanamanId"
     val routeWithArgs = "$route/{$SensorTanamanIdArg}"
 }

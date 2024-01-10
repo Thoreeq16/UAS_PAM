@@ -39,14 +39,23 @@ import com.example.uas_pam.model.PenyediaViewModel
 import com.example.uas_pam.model.CatatanPemantauanDetailUiState
 import com.example.uas_pam.model.CatatanPemantauanDetailViewModel
 import com.example.uas_pam.model.toCatatanPemantauan
+import com.example.uas_pam.navigasi.DestinasiNavigasi
 import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
+
+object CatatanPemantauanDetailDestination : DestinasiNavigasi {
+    override val route = "CatatanPemantauan_details"
+    override val titleRes = R.string.detail_catatan_pemantauan
+    const val CatatanPemantauanIdArg = "CatatanPemantauanId"
+    val routeWithArgs = "$route/{$CatatanPemantauanIdArg}"
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    navigateToEditItem: (Int) -> Unit,
+    navigateToEditCatatanPemantauan: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CatatanPemantauanDetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -56,13 +65,13 @@ fun DetailScreen(
     Scaffold(
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(DetailDestination.titleRes),
+                title = stringResource(CatatanPemantauanDetailDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = navigateBack
             )
         }, floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditItem(uiState.value.detailCatatanPemantauan.id) },
+                onClick = { navigateToEditCatatanPemantauan(uiState.value.detailCatatanPemantauan.id) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
 
@@ -74,11 +83,11 @@ fun DetailScreen(
             }
         }, modifier = modifier
     ) { innerPadding ->
-        ItemDetailsBody(
+        CatatanPemantauanDetailsBody(
             CatatanPemantauanDetailUiState = uiState.value,
             onDelete = {
                 // Note: If the user rotates the screen very fast, the operation may get cancelled
-                // and the item may not be deleted from the Database. This is because when config
+                // and the CatatanPemantauan may not be deleted from the Database. This is because when config
                 // change occurs, the Activity will be recreated and the rememberCoroutineScope will
                 // be cancelled - since the scope is bound to composition.
                 coroutineScope.launch {
@@ -97,7 +106,7 @@ fun DetailScreen(
 
 
 @Composable
-private fun ItemDetailsBody(
+private fun CatatanPemantauanDetailsBody(
     CatatanPemantauanDetailUiState: CatatanPemantauanDetailUiState,
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
@@ -107,7 +116,7 @@ private fun ItemDetailsBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
-        ItemDetails(
+        CatatanPemantauanDetails(
             CatatanPemantauan  = CatatanPemantauanDetailUiState.detailCatatanPemantauan.toCatatanPemantauan(), modifier = Modifier.fillMaxWidth()
         )
 
@@ -132,7 +141,7 @@ private fun ItemDetailsBody(
 }
 
 @Composable
-fun ItemDetails(
+fun CatatanPemantauanDetails(
     CatatanPemantauan: CatatanPemantauan, modifier: Modifier = Modifier
 ) {
     Card(
@@ -147,9 +156,9 @@ fun ItemDetails(
                 .padding(dimensionResource(id = R.dimen.padding_medium)),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
         ) {
-            ItemDetailsRow(
+            CatatanPemantauanDetailsRow(
                 labelResId = R.string.kondisitnm,
-                itemDetail = CatatanPemantauan.kondisitnm,
+                CatatanPemantauanDetail = CatatanPemantauan.kondisitnm,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -157,9 +166,9 @@ fun ItemDetails(
                     )
                 )
             )
-            ItemDetailsRow(
+            CatatanPemantauanDetailsRow(
                 labelResId = R.string.tglpemantau,
-                itemDetail = CatatanPemantauan.tglpemantau,
+                CatatanPemantauanDetail = CatatanPemantauan.tglpemantau,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -167,9 +176,9 @@ fun ItemDetails(
                     )
                 )
             )
-            ItemDetailsRow(
+            CatatanPemantauanDetailsRow(
                 labelResId = R.string.keterangan,
-                itemDetail = CatatanPemantauan.keterangan,
+                CatatanPemantauanDetail = CatatanPemantauan.keterangan,
                 modifier = Modifier.padding(
                     horizontal = dimensionResource(
                         id = R.dimen
@@ -183,13 +192,13 @@ fun ItemDetails(
 }
 
 @Composable
-private fun ItemDetailsRow(
-    @StringRes labelResId: Int, itemDetail: String, modifier: Modifier = Modifier
+private fun CatatanPemantauanDetailsRow(
+    @StringRes labelResId: Int, CatatanPemantauanDetail: String, modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
         Text(text = stringResource(labelResId))
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = itemDetail, fontWeight = FontWeight.Bold)
+        Text(text = CatatanPemantauanDetail, fontWeight = FontWeight.Bold)
     }
 
 }

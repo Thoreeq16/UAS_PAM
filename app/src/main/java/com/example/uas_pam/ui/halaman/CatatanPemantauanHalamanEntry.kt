@@ -27,9 +27,16 @@ import com.example.uas_pam.model.DetailCatatanPemantauan
 import com.example.uas_pam.model.PenyediaViewModel
 import com.example.uas_pam.model.CatatanPemantauanEntryViewModel
 import com.example.uas_pam.model.UIStateCatatanPemantauan
+import com.example.uas_pam.navigasi.DestinasiNavigasi
 import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
+
+
+object CatatanPemantauanDestinasiEntry : DestinasiNavigasi {
+    override val route = "CatatanPemantauan_entry"
+    override val titleRes = R.string.entry_catatan_pemantauan
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,7 +51,7 @@ fun EntryCatatanPemantauanScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(DestinasiEntry.titleRes),
+                title = stringResource(CatatanPemantauanDestinasiEntry.titleRes),
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior
             )

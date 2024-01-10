@@ -33,7 +33,7 @@ import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
 object TanamanDestinasiEntry : DestinasiNavigasi {
-    override val route = "item_entry"
+    override val route = "Tanaman_entry"
     override val titleRes = R.string.entry_tanaman
 }
 

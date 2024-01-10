@@ -33,8 +33,8 @@ import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
 object SensorTanamanDestinasiEntry : DestinasiNavigasi {
-    override val route = "item_entry"
-    override val titleRes = R.string.entry_tanaman
+    override val route = "SensorTanaman_entry"
+    override val titleRes = R.string.entry_sensor_tanaman
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
