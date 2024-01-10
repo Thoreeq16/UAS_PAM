@@ -32,7 +32,7 @@ import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
-object DestinasiEntry : DestinasiNavigasi {
+object TanamanDestinasiEntry : DestinasiNavigasi {
     override val route = "item_entry"
     override val titleRes = R.string.entry_tanaman
 }
@@ -50,7 +50,7 @@ fun EntryTanamanScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(DestinasiEntry.titleRes),
+                title = stringResource(TanamanDestinasiEntry.titleRes),
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior
             )

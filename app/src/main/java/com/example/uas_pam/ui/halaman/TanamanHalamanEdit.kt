@@ -15,7 +15,7 @@ import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
-object ItemEditDestination : DestinasiNavigasi {
+object TanamanEditDestination : DestinasiNavigasi {
     override val route = "item_edit"
     override val titleRes = R.string.edit_tanaman
     const val itemIdArg = "itemId"
@@ -34,7 +34,7 @@ fun ItemEditScreen(
     Scaffold(
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(ItemEditDestination.titleRes),
+                title = stringResource(TanamanEditDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = onNavigateUp
             )

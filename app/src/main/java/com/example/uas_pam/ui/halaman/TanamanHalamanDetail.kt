@@ -44,7 +44,7 @@ import com.example.uas_pam.navigasi.GreenGuardianTopAppBar
 import com.example.uas_paw.R
 import kotlinx.coroutines.launch
 
-object DetailDestination : DestinasiNavigasi {
+object TanamanDetailDestination : DestinasiNavigasi {
     override val route = "item_details"
     override val titleRes = R.string.detail_tanaman
     const val TanamanIdArg = "itemId"
@@ -65,7 +65,7 @@ fun DetailScreen(
     Scaffold(
         topBar = {
             GreenGuardianTopAppBar(
-                title = stringResource(DetailDestination.titleRes),
+                title = stringResource(TanamanDetailDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = navigateBack
             )
