@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.uas_pam"
+    namespace = "com.example.uas_paw"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.uas_pam"
+        applicationId = "com.example.uas_paw"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
